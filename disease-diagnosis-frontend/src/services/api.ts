@@ -122,24 +122,60 @@ export const diseaseApi = {
       const response = await api.get(`/diseases/${id}/`);
       return response.data;
     } catch (error) {
+      console.log('API failed, using mock data for disease ID:', id);
       // Fallback to mock data
       const mockDisease = mockDiseases.find(d => d.id === id);
       if (mockDisease) {
+        const mockDetails = {
+          1: {
+            symptoms: "Runny nose, sneezing, cough, sore throat, mild headache, low-grade fever, body aches, fatigue",
+            treatments: "Rest, fluids, over-the-counter pain relievers, throat lozenges, humidifier",
+            symptoms_list: ["Runny nose", "Sneezing", "Cough", "Sore throat", "Mild headache", "Low-grade fever", "Body aches", "Fatigue"],
+            treatments_list: ["Rest", "Fluids", "Over-the-counter pain relievers", "Throat lozenges", "Humidifier"]
+          },
+          2: {
+            symptoms: "Increased thirst, frequent urination, extreme fatigue, blurred vision, slow-healing cuts, weight loss",
+            treatments: "Insulin therapy, blood sugar monitoring, healthy diet, regular exercise, medication management",
+            symptoms_list: ["Increased thirst", "Frequent urination", "Extreme fatigue", "Blurred vision", "Slow-healing cuts", "Weight loss"],
+            treatments_list: ["Insulin therapy", "Blood sugar monitoring", "Healthy diet", "Regular exercise", "Medication management"]
+          },
+          3: {
+            symptoms: "High blood pressure readings, headaches, dizziness, chest pain, shortness of breath, nosebleeds",
+            treatments: "Blood pressure medications, low-sodium diet, regular exercise, stress management, weight control",
+            symptoms_list: ["High blood pressure readings", "Headaches", "Dizziness", "Chest pain", "Shortness of breath", "Nosebleeds"],
+            treatments_list: ["Blood pressure medications", "Low-sodium diet", "Regular exercise", "Stress management", "Weight control"]
+          },
+          4: {
+            symptoms: "High fever, body aches, chills, cough, sore throat, runny nose, fatigue, headache, nausea",
+            treatments: "Antiviral medications, rest, fluids, fever reducers, pain relievers, isolation",
+            symptoms_list: ["High fever", "Body aches", "Chills", "Cough", "Sore throat", "Runny nose", "Fatigue", "Headache", "Nausea"],
+            treatments_list: ["Antiviral medications", "Rest", "Fluids", "Fever reducers", "Pain relievers", "Isolation"]
+          },
+          5: {
+            symptoms: "Severe headache, nausea, vomiting, sensitivity to light, sensitivity to sound, visual disturbances",
+            treatments: "Pain medications, rest in dark room, stress management, trigger avoidance, preventive medications",
+            symptoms_list: ["Severe headache", "Nausea", "Vomiting", "Sensitivity to light", "Sensitivity to sound", "Visual disturbances"],
+            treatments_list: ["Pain medications", "Rest in dark room", "Stress management", "Trigger avoidance", "Preventive medications"]
+          }
+        };
+
+        const details = mockDetails[id as keyof typeof mockDetails] || mockDetails[1];
+
         return {
           id: mockDisease.id,
           name: mockDisease.name,
           disease_code: mockDisease.disease_code,
-          symptoms: "Fever, headache, body aches, fatigue, cough, sore throat",
-          treatments: "Rest, fluids, pain relievers, antiviral medications if prescribed",
+          symptoms: details.symptoms,
+          treatments: details.treatments,
           contagious: mockDisease.contagious,
           chronic: mockDisease.chronic,
-          symptoms_list: ["Fever", "Headache", "Body aches", "Fatigue", "Cough", "Sore throat"],
-          treatments_list: ["Rest", "Fluids", "Pain relievers", "Antiviral medications"],
+          symptoms_list: details.symptoms_list,
+          treatments_list: details.treatments_list,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         };
       }
-      throw new Error('Disease not found');
+      throw new Error(`Disease with ID ${id} not found`);
     }
   },
 
