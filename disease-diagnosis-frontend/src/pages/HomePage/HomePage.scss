@@ -1,0 +1,242 @@
+@use '../../App.scss' as *;
+
+.home-page {
+  .hero {
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    color: white;
+    padding: 80px 0;
+    margin: -20px -20px 40px -20px;
+    text-align: center;
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .btn {
+          min-width: 180px;
+          font-size: 18px;
+          padding: 15px 30px;
+        }
+      }
+    }
+  }
+
+  .stats-section {
+    margin-bottom: 60px;
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      color: $dark-gray;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+
+      .stat-card {
+        @include card-style;
+        text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, $white, $light-gray);
+
+        .stat-number {
+          font-size: 3rem;
+          font-weight: 700;
+          color: $primary-color;
+          margin-bottom: 10px;
+        }
+
+        .stat-label {
+          font-size: 1.1rem;
+          color: $medium-gray;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .symptom-checker-section {
+    margin-bottom: 60px;
+
+    h2 {
+      margin-bottom: 15px;
+      color: $dark-gray;
+    }
+
+    p {
+      margin-bottom: 30px;
+      color: $medium-gray;
+      font-size: 1.1rem;
+    }
+  }
+
+  .features-section {
+    margin-bottom: 60px;
+
+    h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+      color: $dark-gray;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+
+      .feature-card {
+        @include card-style;
+        text-align: center;
+        padding: 40px 30px;
+
+        .feature-icon {
+          font-size: 3rem;
+          margin-bottom: 20px;
+        }
+
+        h3 {
+          margin-bottom: 15px;
+          color: $dark-gray;
+          font-size: 1.3rem;
+        }
+
+        p {
+          color: $medium-gray;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+
+  .disclaimer {
+    margin-bottom: 40px;
+
+    .card {
+      background: linear-gradient(135deg, #fef9e7, #fff3cd);
+      border-left: 4px solid $warning-color;
+
+      h3 {
+        color: #856404;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      p {
+        color: #664d03;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .home-page {
+    .hero {
+      padding: 60px 0;
+      margin: -10px -10px 30px -10px;
+
+      .hero-content {
+        h1 {
+          font-size: 2.2rem;
+        }
+
+        p {
+          font-size: 1.1rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: center;
+
+          .btn {
+            width: 100%;
+            max-width: 300px;
+          }
+        }
+      }
+    }
+
+    .stats-section {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+        .stat-card {
+          padding: 30px 15px;
+
+          .stat-number {
+            font-size: 2.5rem;
+          }
+        }
+      }
+    }
+
+    .features-section {
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+
+        .feature-card {
+          padding: 30px 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page {
+    .hero {
+      .hero-content {
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .stats-section {
+      .stats-grid {
+        grid-template-columns: 1fr;
+
+        .stat-card {
+          .stat-number {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+}

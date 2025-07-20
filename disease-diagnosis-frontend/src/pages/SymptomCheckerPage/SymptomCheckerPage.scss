@@ -1,0 +1,69 @@
+@use '../../App.scss' as *;
+
+.symptom-checker-page {
+  .page-header {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h1 {
+      font-size: 2.5rem;
+      color: $dark-gray;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $medium-gray;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+
+  .disclaimer-section {
+    margin-top: 40px;
+
+    .disclaimer {
+      background: linear-gradient(135deg, #fef9e7, #fff3cd);
+      border-left: 4px solid $warning-color;
+
+      h3 {
+        color: #856404;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 20px;
+        color: #664d03;
+
+        li {
+          margin-bottom: 8px;
+          line-height: 1.5;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .symptom-checker-page {
+    .page-header {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}

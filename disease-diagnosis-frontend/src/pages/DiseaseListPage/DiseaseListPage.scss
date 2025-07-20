@@ -1,0 +1,305 @@
+@use '../../App.scss' as *;
+
+.disease-list-page {
+  .page-header {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h1 {
+      font-size: 2.5rem;
+      color: $dark-gray;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $medium-gray;
+    }
+  }
+
+  .filters-section {
+    margin-bottom: 30px;
+
+    .search-form {
+      margin-bottom: 25px;
+
+      .search-input-group {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+
+        .search-input {
+          flex: 1;
+          padding: 12px 16px;
+          border: 2px solid #e1e5e9;
+          border-radius: $border-radius;
+          font-size: 16px;
+          transition: $transition;
+
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+          }
+        }
+
+        .search-btn {
+          min-width: 120px;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .filter-controls {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        label {
+          font-weight: 500;
+          color: $dark-gray;
+          white-space: nowrap;
+        }
+
+        .filter-select {
+          padding: 8px 12px;
+          border: 2px solid #e1e5e9;
+          border-radius: $border-radius;
+          font-size: 14px;
+          background-color: white;
+          cursor: pointer;
+          transition: $transition;
+
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+          }
+        }
+      }
+
+      .clear-filters-btn {
+        margin-left: auto;
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .results-info {
+    margin-bottom: 20px;
+    text-align: center;
+
+    p {
+      color: $medium-gray;
+      font-size: 1rem;
+    }
+  }
+
+  .diseases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+
+    .disease-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: $transition;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .disease-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        gap: 10px;
+
+        h3 {
+          color: $dark-gray;
+          margin: 0;
+          font-size: 1.2rem;
+          line-height: 1.3;
+          flex: 1;
+        }
+
+        .disease-code {
+          background-color: $light-gray;
+          color: $medium-gray;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: 500;
+          white-space: nowrap;
+        }
+      }
+
+      .disease-info {
+        flex: 1;
+        margin-bottom: 20px;
+
+        .symptoms-count {
+          color: $medium-gray;
+          margin-bottom: 15px;
+          font-size: 0.95rem;
+        }
+
+        .disease-flags {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+
+          .flag {
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+
+            &.contagious {
+              background-color: #f8d7da;
+              color: $danger-color;
+            }
+
+            &.chronic {
+              background-color: #fff3cd;
+              color: #856404;
+            }
+          }
+        }
+      }
+
+      .view-details-btn {
+        margin-top: auto;
+        padding: 10px 20px;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: $light-gray;
+    border-radius: $border-radius;
+
+    h3 {
+      color: $dark-gray;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: $medium-gray;
+      font-size: 1.1rem;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+
+    .pagination-btn {
+      padding: 10px 20px;
+      font-size: 14px;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    .page-info {
+      color: $medium-gray;
+      font-weight: 500;
+      padding: 0 10px;
+    }
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .disease-list-page {
+    .page-header {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .filters-section {
+      .search-form {
+        .search-input-group {
+          flex-direction: column;
+          align-items: stretch;
+
+          .search-btn {
+            width: 100%;
+          }
+        }
+      }
+
+      .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+
+        .filter-group {
+          justify-content: space-between;
+        }
+
+        .clear-filters-btn {
+          margin-left: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    .diseases-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .pagination {
+      flex-direction: column;
+      gap: 15px;
+
+      .pagination-btn {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .disease-list-page {
+    .diseases-grid {
+      .disease-card {
+        padding: 16px;
+
+        .disease-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+
+          .disease-code {
+            align-self: flex-end;
+          }
+        }
+      }
+    }
+  }
+}
