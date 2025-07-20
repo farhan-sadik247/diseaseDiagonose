@@ -64,7 +64,8 @@ export interface PaginatedResponse<T> {
   results: T[];
 }
 
-// Real backend API only - no mock data
+// Import local disease data from CSV conversion
+import diseaseData from '../data/diseases.json';
 
 // API functions
 export const diseaseApi = {
@@ -75,26 +76,84 @@ export const diseaseApi = {
     chronic?: boolean;
     page?: number;
   }): Promise<PaginatedResponse<DiseaseListItem>> => {
-    const response = await api.get('/diseases/', { params });
-    return response.data;
+    // Use local data from CSV
+    let filteredDiseases = [...diseaseData.diseases];
+
+    // Apply filters
+    if (params?.search) {
+      filteredDiseases = filteredDiseases.filter(d =>
+        d.name.toLowerCase().includes(params.search!.toLowerCase()) ||
+        d.symptoms.toLowerCase().includes(params.search!.toLowerCase())
+      );
+    }
+    if (params?.contagious !== undefined) {
+      filteredDiseases = filteredDiseases.filter(d => d.contagious === params.contagious);
+    }
+    if (params?.chronic !== undefined) {
+      filteredDiseases = filteredDiseases.filter(d => d.chronic === params.chronic);
+    }
+
+    // Convert to list format
+    const results = filteredDiseases.map(d => ({
+      id: d.id,
+      name: d.name,
+      disease_code: d.disease_code,
+      contagious: d.contagious,
+      chronic: d.chronic,
+      symptoms_count: d.symptoms_list.length
+    }));
+
+    return {
+      count: results.length,
+      next: null,
+      previous: null,
+      results: results
+    };
   },
 
   // Get a specific disease by ID
   getDisease: async (id: number): Promise<Disease> => {
-    const response = await api.get(`/diseases/${id}/`);
-    return response.data;
+    const disease = diseaseData.diseases.find(d => d.id === id);
+    if (!disease) {
+      throw new Error(`Disease with ID ${id} not found`);
+    }
+    return disease;
   },
 
   // Check symptoms
   checkSymptoms: async (symptoms: string[]): Promise<SymptomCheckerResponse> => {
-    const response = await api.post('/symptom-checker/', { symptoms });
-    return response.data;
+    // Simple symptom matching
+    const matches = diseaseData.diseases.map(disease => {
+      const matchingSymptoms = symptoms.filter(symptom =>
+        disease.symptoms.toLowerCase().includes(symptom.toLowerCase())
+      );
+      const matchScore = matchingSymptoms.length;
+      const matchPercentage = Math.round((matchScore / symptoms.length) * 100);
+
+      return {
+        id: disease.id,
+        name: disease.name,
+        disease_code: disease.disease_code,
+        contagious: disease.contagious,
+        chronic: disease.chronic,
+        match_score: matchScore,
+        match_percentage: matchPercentage,
+        symptoms_list: disease.symptoms_list
+      };
+    }).filter(match => match.match_score > 0)
+      .sort((a, b) => b.match_score - a.match_score)
+      .slice(0, 10);
+
+    return {
+      input_symptoms: symptoms,
+      total_matches: matches.length,
+      results: matches
+    };
   },
 
   // Get disease statistics
   getStats: async (): Promise<DiseaseStats> => {
-    const response = await api.get('/stats/');
-    return response.data;
+    return diseaseData.stats;
   },
 };
 

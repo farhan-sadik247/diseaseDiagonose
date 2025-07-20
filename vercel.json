@@ -1,41 +1,4 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "disease-diagnosis-frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/index.py"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "disease-diagnosis-frontend/dist/assets/$1"
-    },
-    {
-      "src": "/",
-      "dest": "disease-diagnosis-frontend/dist/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "disease-diagnosis-frontend/dist/index.html"
-    }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "disease_diagnosis_backend.settings_vercel",
-    "PYTHONPATH": "disease_diagnosis_backend"
-  }
+  "buildCommand": "cd disease-diagnosis-frontend && npm install && npm run build",
+  "outputDirectory": "disease-diagnosis-frontend/dist"
 }

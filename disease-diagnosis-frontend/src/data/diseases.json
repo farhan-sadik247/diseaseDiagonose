@@ -1,0 +1,63 @@
+{
+  "diseases": [
+    {
+      "id": 1,
+      "name": "Gestational Cholestasis",
+      "disease_code": "D001",
+      "symptoms": "Itchy skin, particularly on the hands and feet",
+      "treatments": "Monitoring, medications to reduce bile acids",
+      "contagious": false,
+      "chronic": false,
+      "symptoms_list": ["Itchy skin", "particularly on the hands and feet"],
+      "treatments_list": ["Monitoring", "medications to reduce bile acids"],
+      "created_at": "2025-01-20T00:00:00Z",
+      "updated_at": "2025-01-20T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Injury to Internal Organ",
+      "disease_code": "D002",
+      "symptoms": "Abdominal pain, bleeding, organ dysfunction",
+      "treatments": "Immediate medical attention, diagnostic tests, surgery (in some cases)",
+      "contagious": false,
+      "chronic": false,
+      "symptoms_list": ["Abdominal pain", "bleeding", "organ dysfunction"],
+      "treatments_list": ["Immediate medical attention", "diagnostic tests", "surgery (in some cases)"],
+      "created_at": "2025-01-20T00:00:00Z",
+      "updated_at": "2025-01-20T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "name": "Scabies",
+      "disease_code": "D003",
+      "symptoms": "Intense itching, especially at night, small blisters or bumps",
+      "treatments": "Prescription medications (topical or oral scabicides), washing clothes and bedding in hot water, vacuuming and cleaning home",
+      "contagious": true,
+      "chronic": true,
+      "symptoms_list": ["Intense itching", "especially at night", "small blisters or bumps"],
+      "treatments_list": ["Prescription medications (topical or oral scabicides)", "washing clothes and bedding in hot water", "vacuuming and cleaning home"],
+      "created_at": "2025-01-20T00:00:00Z",
+      "updated_at": "2025-01-20T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "name": "Congenital Glaucoma",
+      "disease_code": "D004",
+      "symptoms": "Cloudy or hazy eyes, excessive tearing, sensitivity to light",
+      "treatments": "Surgery (e.g., trabeculotomy, goniotomy) to create a new drainage pathway, medications to reduce intraocular pressure",
+      "contagious": false,
+      "chronic": true,
+      "symptoms_list": ["Cloudy or hazy eyes", "excessive tearing", "sensitivity to light"],
+      "treatments_list": ["Surgery (e.g., trabeculotomy, goniotomy) to create a new drainage pathway", "medications to reduce intraocular pressure"],
+      "created_at": "2025-01-20T00:00:00Z",
+      "updated_at": "2025-01-20T00:00:00Z"
+    }
+  ],
+  "stats": {
+    "total_diseases": 395,
+    "contagious_diseases": 156,
+    "chronic_diseases": 189,
+    "non_contagious_diseases": 239,
+    "non_chronic_diseases": 206
+  }
+}
