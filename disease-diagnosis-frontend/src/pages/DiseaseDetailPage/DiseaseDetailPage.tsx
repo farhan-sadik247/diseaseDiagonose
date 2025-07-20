@@ -19,11 +19,8 @@ const DiseaseDetailPage = () => {
         return;
       }
 
-      console.log('Fetching disease with ID:', id);
-
       try {
         const data = await diseaseApi.getDisease(parseInt(id));
-        console.log('Disease data received:', data);
         setDisease(data);
       } catch (err) {
         setError(`Failed to load disease details: ${err}`);
