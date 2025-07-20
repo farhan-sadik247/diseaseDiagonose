@@ -110,3 +110,17 @@ def disease_stats(request):
         'non_contagious_diseases': total_diseases - contagious_count,
         'non_chronic_diseases': total_diseases - chronic_count,
     })
+
+
+@api_view(['GET'])
+def health_check(request):
+    """
+    Simple health check endpoint to verify backend is working
+    """
+    return Response({
+        'status': 'healthy',
+        'backend': 'django',
+        'database_connected': True,
+        'diseases_loaded': Disease.objects.count() > 0,
+        'total_diseases': Disease.objects.count()
+    })

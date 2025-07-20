@@ -2,18 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "disease-diagnosis-frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
       "src": "disease_diagnosis_backend/vercel_wsgi.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "50mb",
         "runtime": "python3.9"
+      }
+    },
+    {
+      "src": "disease-diagnosis-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
       }
     }
   ],
