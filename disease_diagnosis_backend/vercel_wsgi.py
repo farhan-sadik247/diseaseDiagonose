@@ -18,7 +18,7 @@ django.setup()
 # Import models and run initial setup
 from diseases.models import Disease
 from django.core.management import execute_from_command_line
-import pandas as pd
+import csv
 
 def initialize_database():
     """Initialize database with disease data if empty"""
@@ -28,23 +28,24 @@ def initialize_database():
             # Load CSV data
             csv_path = project_dir / 'Diseases_Symptoms.csv'
             if csv_path.exists():
-                df = pd.read_csv(csv_path)
-                
-                for _, row in df.iterrows():
-                    if pd.notna(row.get('Name')) and pd.notna(row.get('Disease_Code')):
-                        contagious = str(row.get('Contagious', 'False')).lower() in ['true', '1', 'yes']
-                        chronic = str(row.get('Chronic', 'False')).lower() in ['true', '1', 'yes']
-                        
-                        Disease.objects.get_or_create(
-                            disease_code=row['Disease_Code'],
-                            defaults={
-                                'name': row['Name'],
-                                'symptoms': row.get('Symptoms', ''),
-                                'treatments': row.get('Treatments', ''),
-                                'contagious': contagious,
-                                'chronic': chronic,
-                            }
-                        )
+                with open(csv_path, 'r', encoding='utf-8') as file:
+                    reader = csv.DictReader(file)
+
+                    for row in reader:
+                        if row.get('Name') and row.get('Disease_Code'):
+                            contagious = str(row.get('Contagious', 'False')).lower() in ['true', '1', 'yes']
+                            chronic = str(row.get('Chronic', 'False')).lower() in ['true', '1', 'yes']
+
+                            Disease.objects.get_or_create(
+                                disease_code=row['Disease_Code'],
+                                defaults={
+                                    'name': row['Name'],
+                                    'symptoms': row.get('Symptoms', ''),
+                                    'treatments': row.get('Treatments', ''),
+                                    'contagious': contagious,
+                                    'chronic': chronic,
+                                }
+                            )
                 print(f"Loaded {Disease.objects.count()} diseases")
     except Exception as e:
         print(f"Error initializing database: {e}")
