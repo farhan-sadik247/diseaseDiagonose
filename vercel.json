@@ -23,6 +23,18 @@
       "dest": "disease_diagnosis_backend/vercel_wsgi.py"
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "disease-diagnosis-frontend/dist/assets/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "disease-diagnosis-frontend/dist/favicon.ico"
+    },
+    {
+      "src": "/",
+      "dest": "disease-diagnosis-frontend/dist/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "disease-diagnosis-frontend/dist/index.html"
     }
