@@ -1,34 +1,10 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "cd disease-diagnosis-frontend && npm install && npm run build",
+  "outputDirectory": "disease-diagnosis-frontend/dist",
+  "rewrites": [
     {
-      "src": "disease_diagnosis_backend/vercel_wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9"
-      }
-    },
-    {
-      "src": "disease-diagnosis-frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "disease_diagnosis_backend/vercel_wsgi.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "disease-diagnosis-frontend/dist/index.html"
-    }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "disease_diagnosis_backend.settings_vercel",
-    "PYTHONPATH": "disease_diagnosis_backend"
-  }
+  ]
 }
