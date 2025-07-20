@@ -64,7 +64,7 @@ export interface PaginatedResponse<T> {
   results: T[];
 }
 
-// Remove mock data - use real backend only
+// Real backend API only - no mock data
 
 // API functions
 export const diseaseApi = {
