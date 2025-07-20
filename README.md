@@ -242,93 +242,6 @@ DiseaseDiagonose/
 - **Complete Records**: Full information for each disease
 - **Search Optimized**: Indexed for fast retrieval
 
-## ⚡ **Performance Features**
-
-- **⚡ Fast Loading**: <2 second API response times
-- **📄 Smart Pagination**: 20 results per page for optimal performance
-- **🔍 Debounced Search**: Reduced API calls with intelligent search
-- **🗃️ Database Indexing**: Optimized queries for fast data retrieval
-- **📱 Responsive Design**: Optimized for all screen sizes
-- **🎯 Lazy Loading**: Efficient resource loading
-- **💾 Smart Caching**: Frequently accessed data optimization
-
-## 🔒 **Security & Privacy**
-
-- **🛡️ CORS Protection**: Configured for specific trusted origins
-- **✅ Input Validation**: All API endpoints validate user input
-- **🔐 SQL Injection Protection**: Django ORM prevents SQL attacks
-- **🚫 XSS Protection**: Proper data sanitization and escaping
-- **🔒 No Personal Data**: Zero personal information collection
-- **📋 Educational Use**: Clear medical disclaimers throughout
-- **🌐 HTTPS Ready**: SSL/TLS encryption support
-
-## 🚀 **Deployment**
-
-### **Vercel (Recommended)**
-```bash
-# Push to GitHub
-git add .
-git commit -m "Deploy to Vercel"
-git push origin main
-
-# Deploy via Vercel Dashboard
-# 1. Go to vercel.com/dashboard
-# 2. Import GitHub repository
-# 3. Deploy automatically
-```
-
-### **Manual Deployment**
-```bash
-# Build frontend
-cd disease-diagnosis-frontend
-npm run build
-
-# Deploy backend to your preferred platform
-# (Railway, Render, Heroku, etc.)
-```
-
-## 🧪 **Testing**
-
-### **Automated Testing**
-```bash
-# Run comprehensive test suite
-python test_application.py
-```
-
-### **Manual Testing**
-- **Frontend**: http://localhost:5173
-- **API Health**: http://localhost:8000/api/stats/
-- **Symptom Checker**: Test with symptoms like "fever", "headache"
-- **Search**: Try searching for "diabetes", "cancer", "flu"
-
-## 🔧 **Troubleshooting**
-
-### **Common Issues**
-
-| Issue | Solution |
-|-------|----------|
-| **Port already in use** | Change ports in settings or kill existing processes |
-| **CORS errors** | Check `CORS_ALLOWED_ORIGINS` in Django settings |
-| **Database empty** | Run `python manage.py load_diseases` |
-| **Build fails** | Check Node.js version (16+) and dependencies |
-| **API not responding** | Ensure Django server is running on port 8000 |
-
-### **Debug Commands**
-```bash
-# Check Django server
-curl http://localhost:8000/api/stats/
-
-# Check React dev server
-curl http://localhost:5173
-
-# View Django logs
-python manage.py runserver --verbosity=2
-
-# Check database
-python manage.py shell
->>> from diseases.models import Disease
->>> Disease.objects.count()
-```
 
 ## ⚠️ **Medical Disclaimer**
 
@@ -368,13 +281,6 @@ We welcome contributions! Here's how to get started:
 ## 📄 **License**
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-## 📞 **Support & Contact**
-
-- **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-repo/discussions)
-- **Documentation**: This README and inline code comments
-- **Email**: [Your contact email]
 
 ## 🙏 **Acknowledgments**
 
