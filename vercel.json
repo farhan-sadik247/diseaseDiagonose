@@ -13,7 +13,7 @@
       "src": "disease-diagnosis-frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "disease-diagnosis-frontend/dist"
+        "distDir": "../dist"
       }
     }
   ],
@@ -24,12 +24,11 @@
     },
     {
       "src": "/(.*)",
-      "dest": "disease-diagnosis-frontend/dist/$1"
+      "dest": "/dist/$1"
     }
   ],
   "env": {
     "DJANGO_SETTINGS_MODULE": "disease_diagnosis_backend.settings_vercel",
     "PYTHONPATH": "disease_diagnosis_backend"
-  },
-  "outputDirectory": "disease-diagnosis-frontend/dist"
+  }
 }
